@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PROFIT — Dashboard</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <div class="d-flex">
+      <!-- SIDEBAR -->
+      <nav class="sidebar">
+        <a class="dashboardTitle" href="dashboard.html">🏋️ PROFIT</a>
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" href="dashboard.html"
+              ><i class="bi bi-house"></i> Dashboard</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="buddies.html"
+              ><i class="bi bi-people"></i> Buddies</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="progress.html"
+              ><i class="bi bi-graph-up"></i> Progress</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="goals.html"
+              ><i class="bi bi-bullseye"></i> Goals</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="book.html"
+              ><i class="bi bi-calendar-plus"></i> Book Session</a
+            >
+          </li>
+        </ul>
+        <a href="../login/login.html"
+          ><button class="logout-btn">Logout</button></a
+        >
+      </nav>
+
+      <!-- MAIN -->
+      <main class="main-content flex-grow-1">
+        <header
+          class="topbar d-flex justify-content-between align-items-center"
+        >
+          <h5>Hello, Paul 👋</h5>
+          <i class="bi bi-bell" role="button" aria-label="Notifications"></i>
+        </header>
+
+        <!-- STATS -->
+        <div class="row g-3">
+          <div class="col-md-4">
+            <div class="card-dark text-center">
+              <h6>Workout Sessions</h6>
+              <h2>12</h2>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card-dark text-center">
+              <h6>Calories Burned</h6>
+              <h2>2,340</h2>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card-dark text-center">
+              <h6>Active Days</h6>
+              <h2>18</h2>
+            </div>
+          </div>
+        </div>
+
+        <!-- BUDDIES -->
+        <p class="section-heading mt-4">Recommended Buddies</p>
+        <div class="row g-3">
+          <div class="col-md-4">
+            <div class="card-dark buddy-card">
+              <div class="d-flex align-items-center gap-3">
+                <img
+                  src="../app/uploads/catgym.jpg"
+                  class="profile-img"
+                  alt="Michael"
+                />
+                <div class="recommended-buddy">
+                  <h4>Michael</h4>
+                  <span class="badge-tag text-info">💪 Gym Enthusiast</span>
+                </div>
+              </div>
+              <i class="bi bi-plus-circle text-success"></i>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card-dark buddy-card">
+              <div class="d-flex align-items-center gap-3">
+                <img
+                  src="../app/uploads/catdumbell.jpg"
+                  class="profile-img"
+                  alt="Mohammad"
+                />
+                <div class="recommended-buddy">
+                  <h4>Mohammad</h4>
+                  <span class="badge-tag text-warning">🔥 High Activity</span>
+                </div>
+              </div>
+              <i class="bi bi-plus-circle text-success"></i>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card-dark buddy-card">
+              <div class="d-flex align-items-center gap-3">
+                <img
+                  src="../app/uploads/catheadphones.jpg"
+                  class="profile-img"
+                  alt="John"
+                />
+                <div class="recommended-buddy">
+                  <h4>John</h4>
+                  <span class="badge-tag text-primary">🏃 Runner</span>
+                </div>
+              </div>
+              <i class="bi bi-plus-circle text-success"></i>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PROFIT — Goals</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body class="goals-page">
+    <div class="d-flex">
+      <nav class="sidebar">
+        <a class="dashboardTitle" href="dashboard.html">🏋️ PROFIT</a>
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link" href="dashboard.html"
+              ><i class="bi bi-house"></i> Dashboard</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="buddies.html"
+              ><i class="bi bi-people"></i> Buddies</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="progress.html"
+              ><i class="bi bi-graph-up"></i> Progress</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="goals.html"
+              ><i class="bi bi-bullseye"></i> Goals</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="book.html"
+              ><i class="bi bi-calendar-plus"></i> Book Session</a
+            >
+          </li>
+        </ul>
+        <a href="../login/login.html"
+          ><button class="logout-btn">Logout</button></a
+        >
+      </nav>
+
+      <main class="main-content flex-grow-1">
+        <header
+          class="topbar d-flex justify-content-between align-items-center"
+        >
+          <h5>Hello, Paul 👋</h5>
+          <i class="bi bi-bell" role="button" aria-label="Notifications"></i>
+        </header>
+
+        <div class="row g-3 mb-4">
+          <div class="col-6 col-md-3">
+            <div class="goal-summary">
+              <div>
+                <div class="num text-light">6</div>
+                <div class="lbl">Total Goals</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="goal-summary">
+              <div>
+                <div class="num text-info">2</div>
+                <div class="lbl">Completed</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="goal-summary">
+              <div>
+                <div class="num text-success">3</div>
+                <div class="lbl">In Progress</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="goal-summary">
+              <div>
+                <div class="num text-warning">1</div>
+                <div class="lbl">Almost There</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="section-heading">Active Goals</p>
+        <div class="row g-3 mb-4" id="goalGrid"></div>
+
+        <p class="section-heading mt-4">Add New Goal</p>
+        <div class="add-goal-card">
+          <div class="row g-3">
+            <div class="col-md-4">
+              <div class="form-label-sm">Goal Type</div>
+              <select class="input-dark" id="goalType">
+                <option>Weight Loss</option>
+                <option>Strength</option>
+                <option>Cardio / Endurance</option>
+                <option>Sessions per Week</option>
+                <option>Active Days</option>
+                <option>Custom</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <div class="form-label-sm">Goal Name</div>
+              <input
+                class="input-dark"
+                id="goalName"
+                type="text"
+                placeholder="e.g. Run 5K in under 25 min"
+              />
+            </div>
+            <div class="col-md-2">
+              <div class="form-label-sm">Target</div>
+              <input
+                class="input-dark"
+                id="goalTarget"
+                type="text"
+                placeholder="e.g. 80 kg"
+              />
+            </div>
+            <div class="col-md-2">
+              <div class="form-label-sm">Due Date</div>
+              <input class="input-dark" id="goalDue" type="date" />
+            </div>
+            <div class="col-12 d-flex justify-content-end">
+              <button class="btn-profit" onclick="addGoal()">
+                <i class="bi bi-plus-circle me-2"></i>Add Goal
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script>
+      const goals = [
+        {
+          icon: "⚖️",
+          title: "Reach 80 kg",
+          sub: "Weight goal",
+          current: "84",
+          target: "80 kg",
+          pct: 70,
+          due: "May 30, 2025",
+          badge: "active",
+          accent: "var(--green)",
+        },
+        {
+          icon: "🏋️",
+          title: "Bench Press 100 kg",
+          sub: "Strength milestone",
+          current: "95",
+          target: "100 kg",
+          pct: 82,
+          due: "Apr 20, 2025",
+          badge: "close",
+          accent: "var(--orange)",
+        },
+        {
+          icon: "🏃",
+          title: "Run 5K under 25 min",
+          sub: "Cardio goal",
+          current: "24:10",
+          target: "24:00",
+          pct: 88,
+          due: "Apr 15, 2025",
+          badge: "close",
+          accent: "var(--orange)",
+        },
+        {
+          icon: "📅",
+          title: "20 Sessions This Month",
+          sub: "Consistency goal",
+          current: "12",
+          target: "20",
+          pct: 60,
+          due: "Apr 30, 2025",
+          badge: "active",
+          accent: "var(--green)",
+        },
+        {
+          icon: "🔥",
+          title: "14-Day Streak",
+          sub: "Active days",
+          current: "9",
+          target: "14",
+          pct: 64,
+          due: "Apr 12, 2025",
+          badge: "active",
+          accent: "#4f9eff",
+        },
+        {
+          icon: "🥊",
+          title: "Complete Boxing Course",
+          sub: "Skill goal",
+          current: "4",
+          target: "8 classes",
+          pct: 50,
+          due: "May 1, 2025",
+          badge: "active",
+          accent: "var(--cyan)",
+        },
+      ];
+      const badgeLabel = {
+        active: "In Progress",
+        close: "Almost There!",
+        done: "Completed",
+      };
+      function renderGoals(list) {
+        const g = document.getElementById("goalGrid");
+        g.innerHTML = "";
+        list.forEach((g2) => {
+          g.innerHTML += `<div class="col-md-4"><div class="goal-card" style="--accent-color:${g2.accent}">
+        <div class="goal-header"><div><div class="goal-icon">${g2.icon}</div><div class="goal-title">${g2.title}</div><div class="goal-sub">${g2.sub}</div></div>
+        <span class="goal-badge badge-${g2.badge}">${badgeLabel[g2.badge]}</span></div>
+        <div class="goal-nums"><div class="goal-current">${g2.current}</div><div class="goal-target">/ ${g2.target}</div><div class="goal-pct">${g2.pct}%</div></div>
+        <div class="progress-track"><div class="progress-fill" style="width:${g2.pct}%"></div></div>
+        <div class="goal-footer"><span class="goal-due"><i class="bi bi-calendar3 me-1"></i>Due ${g2.due}</span><button class="goal-edit"><i class="bi bi-pencil"></i></button></div>
+      </div></div>`;
+        });
+      }
+      function addGoal() {
+        const name = document.getElementById("goalName").value.trim();
+        if (!name) return;
+        const type = document.getElementById("goalType").value;
+        const icons = {
+          "Weight Loss": "⚖️",
+          Strength: "🏋️",
+          "Cardio / Endurance": "🏃",
+          "Sessions per Week": "📅",
+          "Active Days": "🔥",
+          Custom: "🎯",
+        };
+        const due = document.getElementById("goalDue").value;
+        goals.push({
+          icon: icons[type] || "🎯",
+          title: name,
+          sub: type,
+          current: "0",
+          target: document.getElementById("goalTarget").value || "—",
+          pct: 0,
+          due: due
+            ? new Date(due).toLocaleDateString("en-US", {
+                month: "short",
+                day: "numeric",
+                year: "numeric",
+              })
+            : "No deadline",
+          badge: "active",
+          accent: "var(--green)",
+        });
+        renderGoals(goals);
+        ["goalName", "goalTarget", "goalDue"].forEach(
+          (id) => (document.getElementById(id).value = ""),
+        );
+      }
+      renderGoals(goals);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PROFIT — Progress</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <div class="d-flex">
+      <nav class="sidebar">
+        <a class="dashboardTitle" href="dashboard.html">🏋️ PROFIT</a>
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link" href="dashboard.html"
+              ><i class="bi bi-house"></i> Dashboard</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="buddies.html"
+              ><i class="bi bi-people"></i> Buddies</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="progress.html"
+              ><i class="bi bi-graph-up"></i> Progress</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="goals.html"
+              ><i class="bi bi-bullseye"></i> Goals</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="book.html"
+              ><i class="bi bi-calendar-plus"></i> Book Session</a
+            >
+          </li>
+        </ul>
+        <a href="../login/login.html"
+          ><button class="logout-btn">Logout</button></a
+        >
+      </nav>
+
+      <main class="main-content flex-grow-1">
+        <header
+          class="topbar d-flex justify-content-between align-items-center"
+        >
+          <h5>Hello, Paul 👋</h5>
+          <i class="bi bi-bell" role="button" aria-label="Notifications"></i>
+        </header>
+
+        <!-- STAT STRIP -->
+        <div class="row g-3 mb-4">
+          <div class="col-6 col-md-3">
+            <div class="stat-mini">
+              <div class="label">Total Sessions</div>
+              <div class="value">47</div>
+              <div class="delta text-success">
+                <i class="bi bi-arrow-up-short"></i> +3 this week
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="stat-mini">
+              <div class="label">Calories Burned</div>
+              <div class="value">18.4k</div>
+              <div class="delta text-success">
+                <i class="bi bi-arrow-up-short"></i> +340 this week
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="stat-mini">
+              <div class="label">Active Streak</div>
+              <div class="value">9 <span class="value-unit">days</span></div>
+              <div class="delta text-warning">
+                <i class="bi bi-fire"></i> Personal best!
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="stat-mini">
+              <div class="label">Avg. Duration</div>
+              <div class="value">52 <span class="value-unit">min</span></div>
+              <div class="delta text-success">
+                <i class="bi bi-arrow-up-short"></i> +4 min vs last week
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-3 mb-4">
+          <div class="col-md-7">
+            <div class="chart-card h-100">
+              <div class="chart-title">Weekly Sessions — Last 7 Weeks</div>
+              <div class="bar-chart" id="barChart"></div>
+              <div class="d-flex gap-3 mt-3">
+                <span class="chart-legend text-success">● Strength</span>
+                <span class="chart-legend text-info">● Cardio</span>
+                <span class="chart-legend text-warning">● HIIT</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="chart-card h-100">
+              <div class="chart-title">Personal Records</div>
+              <div id="prList"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <div class="chart-title">Recent Activity</div>
+          <div id="activityLog"></div>
+        </div>
+      </main>
+    </div>
+    <script>
+      const weeks = [
+        { label: "W1", s: 3, c: 2, h: 1 },
+        { label: "W2", s: 2, c: 3, h: 2 },
+        { label: "W3", s: 4, c: 1, h: 1 },
+        { label: "W4", s: 3, c: 2, h: 3 },
+        { label: "W5", s: 5, c: 2, h: 2 },
+        { label: "W6", s: 4, c: 3, h: 1 },
+        { label: "W7", s: 3, c: 2, h: 2 },
+      ];
+      const maxT = Math.max(...weeks.map((w) => w.s + w.c + w.h));
+      weeks.forEach((w) => {
+        document.getElementById("barChart").innerHTML += `
+      <div class="bar-col">
+        <div class="bar-val">${w.s + w.c + w.h}</div>
+        <div class="bar-wrap" style="height:110px"><div class="bar green" style="height:${(w.s / maxT) * 100}%"></div></div>
+        <div class="bar-label">${w.label}</div>
+      </div>`;
+      });
+      [
+        { name: "Bench Press", val: "95 kg", pct: 82, color: "var(--green)" },
+        { name: "Squat", val: "120 kg", pct: 91, color: "var(--cyan)" },
+        { name: "Deadlift", val: "140 kg", pct: 95, color: "var(--orange)" },
+        { name: "5K Run", val: "24:10", pct: 68, color: "#4f9eff" },
+      ].forEach((p) => {
+        document.getElementById("prList").innerHTML += `
+      <div class="pr-row">
+        <div class="pr-name">${p.name}</div>
+        <div class="pr-right">
+          <div class="pr-bar-wrap"><div class="pr-bar-fill" style="width:${p.pct}%;background:${p.color}"></div></div>
+          <div class="pr-val">${p.val}</div>
+        </div>
+      </div>`;
+      });
+      [
+        {
+          icon: "🏋️",
+          bg: "rgba(12,209,62,.12)",
+          title: "Strength Training",
+          meta: "Today · 60 min · with Michael",
+          stat: "420 kcal",
+        },
+        {
+          icon: "🏃",
+          bg: "rgba(0,212,170,.12)",
+          title: "Morning Run",
+          meta: "Yesterday · 35 min",
+          stat: "310 kcal",
+        },
+        {
+          icon: "⚡",
+          bg: "rgba(255,107,43,.12)",
+          title: "HIIT Session",
+          meta: "2 days ago · 30 min · with John",
+          stat: "380 kcal",
+        },
+        {
+          icon: "🚴",
+          bg: "rgba(79,158,255,.12)",
+          title: "Cycling",
+          meta: "3 days ago · 45 min",
+          stat: "350 kcal",
+        },
+        {
+          icon: "🧘",
+          bg: "rgba(122,122,122,.12)",
+          title: "Yoga & Stretch",
+          meta: "4 days ago · 50 min",
+          stat: "180 kcal",
+        },
+      ].forEach((l) => {
+        document.getElementById("activityLog").innerHTML += `
+      <div class="log-row">
+        <div class="log-icon" style="background:${l.bg}">${l.icon}</div>
+        <div class="log-info"><div class="log-title">${l.title}</div><div class="log-meta">${l.meta}</div></div>
+        <div class="log-stat">${l.stat}</div>
+      </div>`;
+      });
+    </script>
+  </body>
+</html>

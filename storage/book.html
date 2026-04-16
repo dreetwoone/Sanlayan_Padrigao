@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PROFIT — Book Session</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <div class="d-flex">
+      <nav class="sidebar">
+        <a class="dashboardTitle" href="dashboard.html">🏋️ PROFIT</a>
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link" href="dashboard.html"
+              ><i class="bi bi-house"></i> Dashboard</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="buddies.html"
+              ><i class="bi bi-people"></i> Buddies</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="progress.html"
+              ><i class="bi bi-graph-up"></i> Progress</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="goals.html"
+              ><i class="bi bi-bullseye"></i> Goals</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="book.html"
+              ><i class="bi bi-calendar-plus"></i> Book Session</a
+            >
+          </li>
+        </ul>
+        <a href="../login/login.html"
+          ><button class="logout-btn">Logout</button></a
+        >
+      </nav>
+
+      <main class="main-content flex-grow-1">
+        <header
+          class="topbar d-flex justify-content-between align-items-center"
+        >
+          <h5>Hello, Paul 👋</h5>
+          <i class="bi bi-bell" role="button" aria-label="Notifications"></i>
+        </header>
+
+        <!-- STEPS -->
+        <div class="steps-bar">
+          <div class="step-tab active" id="st1">
+            <div class="step-num" id="sn1">1</div>
+            Trainer
+          </div>
+          <div class="step-tab" id="st2">
+            <div class="step-num" id="sn2">2</div>
+            Workout
+          </div>
+          <div class="step-tab" id="st3">
+            <div class="step-num" id="sn3">3</div>
+            Date &amp; Time
+          </div>
+          <div class="step-tab" id="st4">
+            <div class="step-num" id="sn4">4</div>
+            Confirm
+          </div>
+        </div>
+
+        <!-- STEP 1 -->
+        <div id="panel1">
+          <p class="section-heading">Choose a Trainer / Buddy</p>
+          <div class="row g-3 mb-4" id="trainerGrid">
+            <div class="col-md-4">
+              <div class="trainer-card" onclick="pickTrainer(this, 'Michael')">
+                <div class="t-avatar">🐱</div>
+                <div>
+                  <div class="t-name">Michael</div>
+                  <div class="t-tag text-info">💪 Gym Enthusiast</div>
+                </div>
+                <div class="t-check"><i class="bi bi-check"></i></div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="trainer-card" onclick="pickTrainer(this, 'Mohammad')">
+                <div class="t-avatar">🏋️</div>
+                <div>
+                  <div class="t-name">Mohammad</div>
+                  <div class="t-tag text-warning">🔥 High Activity</div>
+                </div>
+                <div class="t-check"><i class="bi bi-check"></i></div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="trainer-card" onclick="pickTrainer(this, 'John')">
+                <div class="t-avatar">🐶</div>
+                <div>
+                  <div class="t-name">John</div>
+                  <div class="t-tag text-primary">🏃 Runner</div>
+                </div>
+                <div class="t-check"><i class="bi bi-check"></i></div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="trainer-card" onclick="pickTrainer(this, 'Lebron')">
+                <div class="t-avatar">🥊</div>
+                <div>
+                  <div class="t-name">Lebron</div>
+                  <div class="t-tag text-light">🥊 Boxing Enthusiast</div>
+                </div>
+                <div class="t-check"><i class="bi bi-check"></i></div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="trainer-card" onclick="pickTrainer(this, 'Obiwan')">
+                <div class="t-avatar">🐕</div>
+                <div>
+                  <div class="t-name">Obiwan</div>
+                  <div class="t-tag text-success">🥊 Boxing Trainer</div>
+                </div>
+                <div class="t-check"><i class="bi bi-check"></i></div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="trainer-card" onclick="pickTrainer(this, 'Ippo')">
+                <div class="t-avatar">🐾</div>
+                <div>
+                  <div class="t-name">Ippo</div>
+                  <div class="t-tag text-danger">🥊 Shadow Boxer</div>
+                </div>
+                <div class="t-check"><i class="bi bi-check"></i></div>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-end gap-2">
+            <button class="btn-profit" onclick="goStep(2)">
+              Next <i class="bi bi-arrow-right ms-1"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div id="panel2" class="hidden">
+          <p class="section-heading">Choose Workout Type</p>
+          <div class="row g-3 mb-4">
+            <div class="col-6 col-md-2">
+              <div
+                class="workout-card"
+                onclick="pickWorkout(this, 'Strength Training', '60 min')"
+              >
+                <div class="w-icon">🏋️</div>
+                <div class="w-name">Strength</div>
+                <div class="w-dur">60 min</div>
+              </div>
+            </div>
+            <div class="col-6 col-md-2">
+              <div
+                class="workout-card"
+                onclick="pickWorkout(this, 'Cardio', '45 min')"
+              >
+                <div class="w-icon">🏃</div>
+                <div class="w-name">Cardio</div>
+                <div class="w-dur">45 min</div>
+              </div>
+            </div>
+            <div class="col-6 col-md-2">
+              <div
+                class="workout-card"
+                onclick="pickWorkout(this, 'HIIT', '30 min')"
+              >
+                <div class="w-icon">⚡</div>
+                <div class="w-name">HIIT</div>
+                <div class="w-dur">30 min</div>
+              </div>
+            </div>
+            <div class="col-6 col-md-2">
+              <div
+                class="workout-card"
+                onclick="pickWorkout(this, 'Yoga & Stretch', '50 min')"
+              >
+                <div class="w-icon">🧘</div>
+                <div class="w-name">Yoga</div>
+                <div class="w-dur">50 min</div>
+              </div>
+            </div>
+            <div class="col-6 col-md-2">
+              <div
+                class="workout-card"
+                onclick="pickWorkout(this, 'Boxing', '45 min')"
+              >
+                <div class="w-icon">🥊</div>
+                <div class="w-name">Boxing</div>
+                <div class="w-dur">45 min</div>
+              </div>
+            </div>
+            <div class="col-6 col-md-2">
+              <div
+                class="workout-card"
+                onclick="pickWorkout(this, 'Cycling', '40 min')"
+              >
+                <div class="w-icon">🚴</div>
+                <div class="w-name">Cycling</div>
+                <div class="w-dur">40 min</div>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-end gap-2">
+            <button class="btn-ghost" onclick="goStep(1)">
+              <i class="bi bi-arrow-left me-1"></i>Back
+            </button>
+            <button class="btn-profit" onclick="goStep(3)">
+              Next <i class="bi bi-arrow-right ms-1"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div id="panel3" class="hidden">
+          <p class="section-heading">Pick a Date</p>
+          <div class="cal-strip" id="calStrip"></div>
+          <p class="section-heading">Pick a Time</p>
+          <div class="time-grid mb-4">
+            <div class="time-slot busy">6:00 AM</div>
+            <div class="time-slot" onclick="pickTime(this, '7:00 AM')">
+              7:00 AM
+            </div>
+            <div class="time-slot" onclick="pickTime(this, '8:00 AM')">
+              8:00 AM
+            </div>
+            <div class="time-slot busy">9:00 AM</div>
+            <div class="time-slot" onclick="pickTime(this, '10:00 AM')">
+              10:00 AM
+            </div>
+            <div class="time-slot" onclick="pickTime(this, '11:00 AM')">
+              11:00 AM
+            </div>
+            <div class="time-slot busy">12:00 PM</div>
+            <div class="time-slot" onclick="pickTime(this, '1:00 PM')">
+              1:00 PM
+            </div>
+            <div class="time-slot" onclick="pickTime(this, '2:00 PM')">
+              2:00 PM
+            </div>
+            <div class="time-slot" onclick="pickTime(this, '4:00 PM')">
+              4:00 PM
+            </div>
+            <div class="time-slot" onclick="pickTime(this, '5:00 PM')">
+              5:00 PM
+            </div>
+            <div class="time-slot" onclick="pickTime(this, '6:00 PM')">
+              6:00 PM
+            </div>
+          </div>
+          <p class="section-heading">
+            Notes <span class="section-heading-opt">(optional)</span>
+          </p>
+          <textarea
+            class="notes-input mb-4"
+            id="notesInput"
+            rows="3"
+            placeholder="e.g. Focus on upper body, going light on knees today..."
+          ></textarea>
+          <div class="d-flex justify-content-end gap-2">
+            <button class="btn-ghost" onclick="goStep(2)">
+              <i class="bi bi-arrow-left me-1"></i>Back
+            </button>
+            <button class="btn-profit" onclick="goStep(4)">
+              Review <i class="bi bi-arrow-right ms-1"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 4 -->
+        <div id="panel4" class="hidden">
+          <p class="section-heading">Review Your Booking</p>
+          <div class="book-card mb-4">
+            <div class="summary-row">
+              <span class="s-label">Trainer / Buddy</span
+              ><span class="s-value" id="s-trainer">—</span>
+            </div>
+            <div class="summary-row">
+              <span class="s-label">Workout Type</span
+              ><span class="s-value" id="s-workout">—</span>
+            </div>
+            <div class="summary-row">
+              <span class="s-label">Duration</span
+              ><span class="s-value" id="s-dur">—</span>
+            </div>
+            <div class="summary-row">
+              <span class="s-label">Date</span
+              ><span class="s-value" id="s-date">—</span>
+            </div>
+            <div class="summary-row">
+              <span class="s-label">Time</span
+              ><span class="s-value" id="s-time">—</span>
+            </div>
+            <div class="summary-row hidden" id="s-notes-row">
+              <span class="s-label">Notes</span
+              ><span class="s-value s-notes-val" id="s-notes">—</span>
+            </div>
+          </div>
+          <div class="d-flex justify-content-end gap-2">
+            <button class="btn-ghost" onclick="goStep(3)">
+              <i class="bi bi-arrow-left me-1"></i>Back
+            </button>
+            <button class="btn-profit" onclick="confirmBooking()">
+              <i class="bi bi-check-circle me-1"></i>Confirm Booking
+            </button>
+          </div>
+        </div>
+
+        <!-- DONE -->
+        <div id="panelDone" class="hidden">
+          <div class="confirm-box">
+            <div class="confirm-icon">✅</div>
+            <div class="confirm-title">Session Booked!</div>
+            <div class="confirm-sub">
+              Your appointment has been confirmed. See you at the gym!
+            </div>
+            <div class="confirm-pill" id="confirmPill"></div>
+            <br />
+            <button class="btn-ghost" onclick="resetForm()">
+              <i class="bi bi-plus-circle me-1"></i>Book Another Session
+            </button>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script>
+      var sel = { trainer: "", workout: "", dur: "", date: "", time: "" };
+      function goStep(n) {
+        for (var i = 1; i <= 4; i++) {
+          document.getElementById("panel" + i).classList.add("hidden");
+          var tab = document.getElementById("st" + i),
+            num = document.getElementById("sn" + i);
+          tab.classList.remove("active", "done");
+          if (i < n) {
+            tab.classList.add("done");
+            num.innerHTML = '<i class="bi bi-check"></i>';
+          } else if (i === n) {
+            tab.classList.add("active");
+            num.textContent = i;
+          } else {
+            num.textContent = i;
+          }
+        }
+        document.getElementById("panelDone").classList.add("hidden");
+        document.getElementById("panel" + n).classList.remove("hidden");
+        if (n === 4) fillSummary();
+      }
+      function pickTrainer(el, name) {
+        document
+          .querySelectorAll(".trainer-card")
+          .forEach((c) => c.classList.remove("selected"));
+        el.classList.add("selected");
+        sel.trainer = name;
+      }
+      function pickWorkout(el, name, dur) {
+        document
+          .querySelectorAll(".workout-card")
+          .forEach((c) => c.classList.remove("selected"));
+        el.classList.add("selected");
+        sel.workout = name;
+        sel.dur = dur;
+      }
+      function pickTime(el, t) {
+        document
+          .querySelectorAll(".time-slot:not(.busy)")
+          .forEach((c) => c.classList.remove("selected"));
+        el.classList.add("selected");
+        sel.time = t;
+      }
+      var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+        months = [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec",
+        ];
+      (function () {
+        var s = document.getElementById("calStrip"),
+          today = new Date();
+        for (var i = 0; i < 12; i++) {
+          var d = new Date(today);
+          d.setDate(today.getDate() + i);
+          var el = document.createElement("div");
+          el.className = "cal-day" + (i === 0 ? " today" : "");
+          el.innerHTML =
+            '<div class="cal-dname">' +
+            days[d.getDay()] +
+            '</div><div class="cal-date">' +
+            d.getDate() +
+            "</div>" +
+            (i % 3 === 1 ? '<div class="cal-dot"></div>' : "");
+          var lbl =
+            days[d.getDay()] + ", " + months[d.getMonth()] + " " + d.getDate();
+          (function (node, label) {
+            node.onclick = function () {
+              document
+                .querySelectorAll(".cal-day")
+                .forEach((c) => c.classList.remove("selected"));
+              node.classList.add("selected");
+              sel.date = label;
+            };
+          })(el, lbl);
+          s.appendChild(el);
+        }
+      })();
+      function fillSummary() {
+        ["trainer", "workout", "dur", "date", "time"].forEach(
+          (k) =>
+            (document.getElementById("s-" + k).textContent = sel[k] || "—"),
+        );
+        var notes = document.getElementById("notesInput").value.trim();
+        if (notes) {
+          document.getElementById("s-notes-row").classList.remove("hidden");
+          document.getElementById("s-notes").textContent = notes;
+        }
+      }
+      function confirmBooking() {
+        for (var i = 1; i <= 4; i++) {
+          document.getElementById("panel" + i).classList.add("hidden");
+          var tab = document.getElementById("st" + i);
+          tab.classList.remove("active");
+          tab.classList.add("done");
+          document.getElementById("sn" + i).innerHTML =
+            '<i class="bi bi-check"></i>';
+        }
+        document.getElementById("panelDone").classList.remove("hidden");
+        document.getElementById("confirmPill").textContent =
+          (sel.workout || "Session") +
+          " with " +
+          (sel.trainer || "trainer") +
+          " · " +
+          (sel.date || "TBD") +
+          " at " +
+          (sel.time || "TBD");
+      }
+      function resetForm() {
+        sel = { trainer: "", workout: "", dur: "", date: "", time: "" };
+        document
+          .querySelectorAll(".trainer-card,.workout-card,.cal-day,.time-slot")
+          .forEach((c) => c.classList.remove("selected"));
+        document.getElementById("notesInput").value = "";
+        document.getElementById("s-notes-row").classList.add("hidden");
+        document.getElementById("panelDone").classList.add("hidden");
+        goStep(1);
+        document.getElementById("panel1").classList.remove("hidden");
+      }
+    </script>
+  </body>
+</html>
